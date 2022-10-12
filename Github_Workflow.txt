@@ -124,7 +124,7 @@ git pull <origin> <main> - pull the changes from the repository on GitHub to our
     --allow-unrelated-histories - ignore merge conflict due to unrelated histories and merge anyway
 
 
-If someone has already made and pushed a change and you have not pulled it but insted edited an older version IN THE SAME PLACE, you won't be able to push. You need to pull(you will get an error), then manualy change the conflict(after pulling git will edit your fille to show where that is and what it is) then git commit. Then you can push it(others pulling it after this will not need to edit it, and will see the resolved conflict).
+If someone has already made and pushed a change and you have not pulled it but insted edited an older version, you won't be able to push. You need to pull(you will get an error), then manualy change the conflict(after pulling git will edit your fille to show where that is and what it is) then git commit. Then you can push it(others pulling it after this will not need to edit it, and will see the resolved conflict).
     If this file is not a text one, we need to git pull it but then use git checkout <id or HEAD> <filename>(lucly, when pulling git shows us what ids the conflicted files have), decide which of the versions we want to use, then git add, git commit and git push. We can also keep both by changing their names, deleting the old one, then git add, git commit, git push.
 
 
