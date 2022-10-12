@@ -1,4 +1,4 @@
-                                                KONSPEKTAS
+                                                Conspect
 ###########################################################################################################
 git config --global <what type of setting>.<setting> <change to make to setting> - change an option in git for every project, in your user account, on this computer
 
