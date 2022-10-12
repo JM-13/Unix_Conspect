@@ -1,0 +1,152 @@
+if name has spaces type it between "" or before every space type \
+most commands (including ls) can be given multiple names of things
+ctrl+c - cancel any command
+. - current directory
+.name - hidden something
+.. - directory above current
+* - wildcard, means any part of name (can use *.pdf to mean anything ending with .pdf, or a* for anything begining with a, or a*.pdf for anything begining with a and ending with .pdf) WARNING! wildcards are expanded BEFORE commands go unless they are in "" so it can cause problems with something like find
+? - means any ONE symbol of any type
+> name - type it after command to write output to given filename (creates if does not exist, owerwrites if does exist)
+>> name - type it after command to write output to given filename (creates if does not exist, appends if does exist)
+| - gives output of command before it to command after it
+$text - a value that the computer knows (only usable if you know what it should mean)
+$(something) - the something will be done before other commands so like opposite |
+-- help will show what the command do and their options
+
+
+
+$ ls <name or nothing> - list contents of given directory (default is current one, and it lists it albateticly, if name is given lists files of given name)
+-F adds a /, @, or * if file is directory, link or executable after name
+-l also adds permisions, size, groups, dates and such to the output
+-h makes output human readable ???
+-t list items by time of last change
+-r lists items in reverse order
+-a show even hidden things
+-S sort by size
+-s also display size
+-R list things in directorys too
+
+$ pwd - prints current working directory
+
+$ clear - clears terminall (not history dumdum)
+
+$ man <any command> - makes a scroolable manual of how to use that command
+
+$ cd <directory> - change directory to given (if none given move to home directory, . moves to current directory, .. moves to above directory, ~ stands for home directory, - brings you to where you were before)
+
+$ mkdir <name or path with name> - makes a directory with given name where you are or if name with path where path leads
+-p make directories in directories you are making
+
+$ nano <name.txt> - open an anchient text editor to make .txt files using command line
+
+$ touch <name> - make ANY file or update its modify date if it existed before
+
+$ rm <name> - remove file SILENTLY (not directory)
+-i ask before removing for everything being removed
+-r remove directory and all of its contents SILENTLY
+
+$ mv <path_one/name path_two/name> - move file or directory (if names are differnt renames it, if name matches existing file then SILENTLY replace it)
+-i ask if something would be replaced
+
+$ cp <path_one/name path_two/name> - like mv except copy not move
+-r copy directory with all of its contents
+
+$ wc <file> - count number of lines, words and characters and print those numbers with filename in that order, lastly it prints all count at the bottom (usefull for multiple files given)
+-l show only number of lines
+-m show only number of characters
+-w show only number of words
+
+$ cat <filename> - prints contents of file
+
+$ less <filename> - cat but only prints as much as fits on screen and turns console into a book like thing
+
+$ sort <filename> - prints  content of file in alphanumerical order
+-n numerical sorting
+
+$ head <filename or text> - prints text until empty space between lines from top
+-n <number> instead print number of lines from top
+
+$ tail <filename or text> - prints text until empty space between lines from bottom
+-n <number> instead print number of lines from bottom
+
+$ echo <text> - prints given text (prints extra command text if given command (sometimes usefull))
+
+$ cut <file or text> - get given section from text verticly seperated by tab and print it (must give some sort of -argument)
+-d <something> instead of tab use given something
+-f <number> cut out given column number
+
+$ uniq <file or text> - removes (does not delete anything) ajacent text witch matches verticly and print whats left
+-c count how many times a line appears
+
+$ grep <pattern file> - prints lines of file witch contain pattern (pattern can be part of a word), if patter is a sentence use "pattern"
+-w limit search to word boundries(not just spaces but also line starts and ends)
+-n shows witch line the found text came from
+-i removes case sensitivity restriction
+-v invert search, meaning it will show what does not contain pattern
+-r recursive, meaning it will search all files and directories for pattern
+-E and "" means it will not be interpreted ???
+    "^text" in pattern means it will only search first word of each line (start of line)
+    "." and -E means same as ?
+-c only tells you number of matched lines
+
+$ find <directory> - like ls but also has path from where we are serching in output
+-type d prints all directorys
+-type f prints all files
+-name <name> prints things witch contain that name
+
+
+
+$ history - shows all commands ever tryed (does not matter if they worked)
+    There are a number of other shortcut commands for getting at the history.
+
+    Ctrl+R enters a history search mode ‘reverse-i-search’ and finds the most recent command in your history that matches the text you enter next. Press Ctrl+R one or more additional times to search for earlier matches. You can then use the left and right arrow keys to choose that line and edit it then hit Return to run the command.
+    !! retrieves the immediately preceding command (you may or may not find this more convenient than using ↑)
+    !$ retrieves the last word of the last command. That’s useful more often than you might expect: after bash goostats.sh NENE01729B.txt stats-NENE01729B.txt, you can type less !$ to look at the file stats-NENE01729B.txt, which is quicker than doing ↑ and editing the command-line.
+
+########################################### Loops ###########################################
+
+for thing in list_of_things
+do
+    operation_using $thing    # Indentation within the loop is not required, but aids legibility
+done
+
+$thing - meand variable name, it means it will change value based on what thing is
+> - if this is insted of $ it means its awaiting input
+; - can be used to seperate multiple commands
+$filename == ${filename} != ${file}name - {} means that what is in there is variable
+
+LOOPS CAN BE INSIDE LOOPS!
+
+######################################## Shell Scripts #######################################
+
+bash *.sh or just any name - run bash script
+-x debug mode, means prints all commands run one by one
+inside of bash script $<number> - means witch argument to use (egz.: $1 == first argument, $2 == second argumen, ect., ect.), if argument name has spaces and used with "" use "$<number>" insted
+
+inside of bash script $@ - means all arguments, if argument name has spaces and used with "" use "$@" insted
+
+# text in bash script - means comment (it won't be run)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
