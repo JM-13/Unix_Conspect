@@ -1,0 +1,162 @@
+                                                KONSPEKTAS
+###########################################################################################################
+git config --global <what type of setting>.<setting> <change to make to setting> - change an option in git for every project, in your user account, on this computer
+
+    user.name "Name" - change the name of the user on this computer
+
+    user.email "Email" - cahnge the email of the user on this computer
+
+    core.autocrlf input - change how git sees line endings(??? (false if on Windows))
+
+    core.editor "text editor name -w" - change witch text editor git uses with command line, -w probably means write privlages
+
+    init.defaultBranch <branch name> - the name of the branch created when you initialize any new repository
+
+
+git config --list - shows your settings
+
+
+///
+NOT needed for current work:
+    git config --global http.proxy proxy-url - tell git about your proxy
+    git config --global https.proxy proxy-url - tell git about your proxy
+
+    git config --global --unset http.proxy - disable the proxy
+    git config --global --unset https.proxy - disable the proxy
+///
+
+
+git <command> -h - gives list and short explanation of command options
+git <command> --help - shows an 'interactive' manual
+git help - get general list of commands and help
+
+
+git init - make current location/path a git reposatory (a place whre git stores versions of our files).
+    This will make a .git folder to store all information about the project
+    DO NOT use nested repositorys as they are not needed and can interfere with each other
+
+######################################################
+These need to be used in the git reposatory we are working in:
+
+///git checkout -b <branch name> - change default branch for current project///
+
+
+git status - tells you your projects status
+
+    --ignored - will show status of ignored files(ignored as in listed in the commited .gitignore file)
+
+
+git add <filename> - makes git track the file (can give multiple file names), if you give directory all files in directory will be tracked
+
+
+git commit - record changes made to file (takes what we told git add and stores a copy in .git with an identifire (letter and number combination)), will only work AFTER git add
+
+    -m <"text"> - record a short comment about the revision we made and why (whithout -m default text editor will launch so we can write a longer comment(leave a gap between short and long comment if you are going to write a long one))
+
+    -a or --all - commit ALL changes (not recomended)
+
+
+git log - show projects history in reverse chronological order(if output too long make console into 'book', can leve 'book' by pressing q)
+
+    -<number> - show only that number of commits
+
+    --oneline - shows only short identifire and given comment
+
+    --graph - display commits as a text based graph
+
+    --patch - ???
+
+    <filename> - if filename is given after everything else show only log of that file
+
+
+git diff - show difference between current file and most recent saved version(+ shows the difference)
+
+    --staged - show difference between what's in git commit and git add (last commited change compared to staging area)
+
+    HEAD~<number> <file name> - show the difference between commit <number> before most recent saved version and current file
+
+    <identifire> <filename> - show difference between specified commit and current file
+        Identifire can just be the 7 first charecter of the full 40
+
+
+git show - show changes made (NOT COMPARISON)
+
+    HEAD~<number> <file name> - same as with diff just with properties of show
+
+
+git checkout <indentifire or HEAD or -- <file name> - restore that version of the file to the staging, the file you want to revert has to be in the staging area itself
+    If -- or HEAD without ~<number> then restore to most recent saved state
+
+
+git revert <identifire> - like git checkout but can restore already commited files to a previus state
+
+
+#####################
+If we want to ignore some files or directorys we need to create a .gitignore file and add every file or directory name in it (each name on different line, if !<filename> then do not ignore it, if **/<filename> ignore that filename wherever it is) then git add .gitignore and git commit it (add a comment if you want). All those files will now be ignored, can only be added with -f option and will not be listed.
+#####################
+
+
+git remote
+    add <local name of reposatory(use origin as it is default)> <reposatory link> - connect local and remote reposatory (the directory you are in now to the given link of the remote one)
+
+    -v - lists all the remotes that are configured
+
+    remove <name> - remove the link to the given reposatory name
+
+    set-url <name> <newurl> - changes the URL that is associated with the remote
+
+    rename <oldname> <newname> - change the local alias of remote (like origin to something else)
+
+
+/// ls -al ~/.ssh - check what key pairs already exist on your computer ///
+/// ssh -T git@github.com - check if GitHub can read our authentication ///
+
+
+git push <origin> <main> - push the changes from our local repository to the repository on GitHub
+
+    #####################
+    You may see a -u option used with git push in some documentation. This option is synonymous with the --set-upstream-to option for the git branch command, and is used to associate the current branch with a remote branch so that the git pull command can be used without any arguments. To do this, simply use git push -u origin main once the remote has been set up.
+    #####################
+
+
+git pull <origin> <main> - pull the changes from the repository on GitHub to our local repository
+
+    --allow-unrelated-histories - ignore merge conflict due to unrelated histories and merge anyway
+
+
+If someone has already made and pushed a change and you have not pulled it but insted edited an older version IN THE SAME PLACE, you won't be able to push. You need to pull(you will get an error), then manualy change the conflict(after pulling git will edit your fille to show where that is and what it is) then git commit. Then you can push it(others pulling it after this will not need to edit it, and will see the resolved conflict).
+    If this file is not a text one, we need to git pull it but then use git checkout <id or HEAD> <filename>(lucly, when pulling git shows us what ids the conflicted files have), decide which of the versions we want to use, then git add, git commit and git push. We can also keep both by changing their names, deleting the old one, then git add, git commit, git push.
+
+
+git fetch origin main - get the remote changes into the local repository, but without merging them
+    To see changes between what you have and what was pushed to Github use git diff main origin/main
+######################################################
+
+
+git clone <git@github.com:$user/$reposatory> <path> - make a copy of the given remote reposatory to the given path (default is current one)
+###########################################################################################################
+
+Typycal work with git:
+
+    Update local reposatoies: git pull origin main
+    Make any wanted changes
+    Stage changes: git add <filename>
+    Commit changes: git commit -m <"comment">
+    Update remote reposatories: git push origin main
+
+
+How to track large files:
+
+    Large data or image files such as .md5 or .psd file types can be tracked within a github repository using the Git Large File Storage open source extension tool. This tool automatically uploads large file contents to a remote server and replaces the file with a text pointer within the github repository.
+
+    Try downloading and installing the Git Large File Storage extension tool, then add tracking of a large file to your github repository. Ask a colleague to clone your repository and describe what they see when they access that large file.
+
+
+Licensing:
+
+    https://swcarpentry.github.io/git-novice/11-licensing/index.html
+
+
+Citation:
+
+    https://swcarpentry.github.io/git-novice/12-citation/index.html
